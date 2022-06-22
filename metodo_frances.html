@@ -25,43 +25,240 @@
             </ul>
         </div>
     </nav>
-    <h1 style="text-align: center;" class="titulo_metodo_frances">Método Frances</h1>
+    <h1 style="text-align: center;" class="titulo_metodo_frances">Método Francés</h1>
     <div class="container">
         <div class="row">
             <div class="col">
-                <h2>Datos </h2>
-                <table class="table">
-
+                <h3 style="text-align: center;">Datos del préstamo </h3>
+                <table class="table table-dark table-striped" id="tabla_1">
                     <tbody>
                         <tr>
                             <th scope="row">Precio de Venta del Activo</th>
-                            <td>Mark</td>
+                            <td><input id="precio_venta_activo" type="number" onchange="modify()"></td>
                         </tr>
                         <tr>
                             <th scope="row">% Cuota Inicial</th>
-                            <td>Mark</td>
+                            <td><input id="cuota_inicial" type="number" onchange="modify()"></td>
                         </tr>
                         <tr>
                             <th scope="row">Nº de Años</th>
-                            <td>Mark</td>
+                            <td><input id="n_anios" type="number" onchange="modify()"></td>
                         </tr>
                         <tr>
                             <th scope="row">Frecuencia de pago</th>
-                            <td>Mark</td>
+                            <td><input id="frecuencia_pago" type="number" onchange="modify()"></td>
                         </tr>
                         <tr>
                             <th scope="row">Nº de días por año</th>
-                            <td>Mark</td>
+                            <td><input id="n_dias_anio" type="number" onchange="modify()"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 style="text-align: center;">Datos de los costes/gastos iniciales </h3>
+                <table class="table table-dark table-striped" id="tabla_2">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Costes Notariales </th>
+                            <td><input id="costes_notariales" type="number" onchange="modify()"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Costes Registrales</th>
+                            <td><input id="costes_registrales" type="number" onchange="modify()"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Tasación</th>
+                            <td><input id="tasacion" type="number" onchange="modify()"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Comisión de estudio</th>
+                            <td><input id="comision_estudio" type="number" onchange="modify()"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Comisión activación</th>
+                            <td><input id="comision_activacion" type="number" onchange="modify()"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 style="text-align: center;">Datos de los costes/gastos periodicos </h3>
+                <table class="table table-dark table-striped" id="tabla_3">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Comisión periodica</th>
+                            <td><input id="comision_periodica" type="number" onchange="modify()"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Portes</th>
+                            <td><input id="portes" type="number" onchange="modify()"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Gastos de Administración</th>
+                            <td><input id="gastos_administracion" type="number" onchange="modify()"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">% de Seguro desgravamen</th>
+                            <td><input id="seguro_desgravamem" type="number" onchange="modify()"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">% de Seguro riesgo</th>
+                            <td><input id="seguro_riesgo" type="number" onchange="modify()"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 style="text-align: center;">Datos del costo de oportunidad </h3>
+                <table class="table table-dark table-striped" id="tabla_4">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Tasa de descuento</th>
+                            <td><input id="tasa_descuento" type="number" onchange="modify()"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="col">
+                <h3 style="text-align: center;">Resultados del financiamiento </h3>
+                <table class="table table-dark table-striped" id="tabla_5">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Saldo a financiar</th>
+                            <td>
+                                <input id="saldo_financiar" type=" number" onchange="modify() "></td>
+                        </tr>
+                        <tr>
+                            <th scope="row ">Monto del préstamo</th>
+                            <td><input id="monto_prestamo " type="number" onchange="modify() "></td>
+                        </tr>
+                        <tr>
+                            <th scope="row ">Nº Cuotas por Año</th>
+                            <td><input id="n_cuotas_anio" type="number" onchange="modify() "></td>
+                        </tr>
+                        <tr>
+                            <th scope="row ">Nº Total de Cuotas</th>
+                            <td><input id="n_total_cuotas" type="number" onchange="modify() "></td>
+                        </tr>
+                    </tbody>
+                </table>
 
+                <h3 style="text-align: center; ">Resultados de los costes/gastos periodicos </h3>
+                <table class="table table-dark table-striped " id="tabla_6">
+                    <tbody>
+                        <tr>
+                            <th scope="row ">% de Seguro desgrav. per.</th>
+                            <td><input id="seguro_desgrav_per " type="number " onchange="modify() "></td>
+                        </tr>
+                        <tr>
+                            <th scope="row ">Seguro riesgo</th>
+                            <td><input id="seguro_riesgo_resultado " type="number " onchange="modify() "></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 style="text-align: center; ">Resultados totales por … </h3>
+                <table class="table table-dark table-striped " id="tabla_7">
+                    <tbody>
+                        <tr>
+                            <th scope="row ">Intereses</th>
+                            <td><input id="intereses " type="number " onchange="modify() "></td>
+                        </tr>
+                        <tr>
+                            <th scope="row ">Amortización del capital</th>
+                            <td><input id="amortizacion_capital " type="number " onchange="modify() "></td>
+                        </tr>
+                        <tr>
+                            <th scope="row ">Seguro de desgravamen</th>
+                            <td><input id="seguro_desgravamen_resultado " type="number " onchange="modify() "></td>
+                        </tr>
+                        <tr>
+                            <th scope="row ">Seguro contra todo riesgo</th>
+                            <td><input id="seguro_contra_todo_riesgo " type="number " onchange="modify() "></td>
+                        </tr>
+                        <tr>
+                            <th scope="row ">Comisiones periodicas</th>
+                            <td><input id="comisiones_periodicas " type="number " onchange="modify() "></td>
+                        </tr>
+                        <tr>
+                            <th scope="row ">Portes / Gastos de adm.</th>
+                            <td><input id="portes_gastos_adm " type="number " onchange="modify() "></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="text-align: center; ">Resultados de Indicadores de Rentabilidad </h3>
+                <table class="table table-dark table-striped " id="tabla_8">
+                    <tbody>
+                        <tr>
+                            <th scope="row ">Tasa de descuento</th>
+                            <td><input id="tasa_descuento_resultado " type="number " onchange="modify() "></td>
+                        </tr>
+                        <tr>
+                            <th scope="row ">TIR de la operación</th>
+                            <td><input id="tir_operacion " type="number " onchange="modify() "></td>
+                        </tr>
+                        <tr>
+                            <th scope="row ">TCEA de la operación</th>
+                            <td><input id="tcea_operacion " type="number " onchange="modify() "></td>
+                        </tr>
+                        <tr>
+                            <th scope="row ">VAN operación</th>
+                            <td><input id="van_operacion " type="number " onchange="modify() "></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
         </div>
     </div>
+
+    <br><br>
+
+    <table class="table  table-bordered">
+        <thead>
+            <tr>
+                <th scope="col ">Nº</th>
+                <th scope="col ">TEA</th>
+                <th scope="col ">i' = TEP = TEM</th>
+                <th scope="col ">IA</th>
+                <th scope="col ">IP</th>
+                <th scope="col ">P.G</th>
+                <th scope="col ">Saldo Inicial</th>
+                <th scope="col ">Saldo Inicial Indexado</th>
+                <th scope="col ">Interes</th>
+                <th scope="col ">Cuota (inc Seg Des)</th>
+                <th scope="col ">Amort.</th>
+                <th scope="col ">Prepago</th>
+                <th scope="col ">Seguro desgrav</th>
+                <th scope="col ">Seguro riesgo</th>
+                <th scope="col ">Comision</th>
+                <th scope="col ">Portes</th>
+                <th scope="col ">Gastos Adm.</th>
+                <th scope="col ">Saldo Final</th>
+                <th scope="col ">Flujo</th>
+            </tr>
+        </thead>
+        <tbody id="tabla_general">
+            <tr>
+                <th scope="row" style="color: red;">1</th>
+                <td style="width: 5%;"><input style="width: 100%;" id="van_operacion " type="number " onchange="" value="10"></td>
+                <td>Otto</td>
+                <td style="width: 5%;"><input style="width: 100%;" id="van_operacion " type="number " onchange="" value="10"></td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+            </tr>
+
+        </tbody>
+    </table>
+    <script src="./index.js "></script>
 </body>
 
 </html>
