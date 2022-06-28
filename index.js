@@ -13,14 +13,7 @@ for (let h = 0; h < 30; h++) {
     arr.push(new Array());
 }
 
-function get_date(days, fecha_actual) {
-    var date = new Date(fecha_actual)
-    date.addDays(days, date);
 
-    var res = '';
-    res += year + '-' + month + '-' + day;
-    return res;
-}
 //15/06/2022 
 //console.log(get_date(32, '2022-03-15'))
 
