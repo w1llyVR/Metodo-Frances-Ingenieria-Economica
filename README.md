@@ -1,1 +1,0 @@
-# Trabajo---Ing---Econ-mica

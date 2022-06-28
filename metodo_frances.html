@@ -29,28 +29,52 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h3 style="text-align: center;">Datos del préstamo </h3>
+                <h3 style="text-align: center;">Datos del bono </h3>
                 <table class="table table-dark table-striped" id="tabla_1">
                     <tbody>
                         <tr>
-                            <th scope="row">Precio de Venta del Activo</th>
-                            <td><input id="precio_venta_activo" type="number" onchange="modify()"></td>
+                            <th scope="row">Valor Nominal</th>
+                            <td><input id="valor_nominal" type="number" onchange="modify()" value="1000"></td>
                         </tr>
                         <tr>
-                            <th scope="row">% Cuota Inicial</th>
-                            <td><input id="cuota_inicial" type="number" onchange="modify()"></td>
+                            <th scope="row">Valor Comercial</th>
+                            <td><input id="valor_comercial" type="number" onchange="modify()" value="1050"></td>
                         </tr>
                         <tr>
                             <th scope="row">Nº de Años</th>
-                            <td><input id="n_anios" type="number" onchange="modify()"></td>
+                            <td><input id="n_anios" type="number" onchange="modify()" value="5"></td>
                         </tr>
                         <tr>
-                            <th scope="row">Frecuencia de pago</th>
-                            <td><input id="frecuencia_pago" type="number" onchange="modify()"></td>
+                            <th scope="row">Frecuencia del cupón</th>
+                            <td><input id="frecuencia_cupon" type="text" onchange="modify()" value="Bimestral"></td>
                         </tr>
                         <tr>
-                            <th scope="row">Nº de días por año</th>
-                            <td><input id="n_dias_anio" type="number" onchange="modify()"></td>
+                            <th scope="row">Dias x Año</th>
+                            <td><input id="dias_x_anio" type="number" onchange="modify()" value="360"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Tipo de Tasa de Interés</th>
+                            <td><input id="tipo_tasa_interes" type="text" onchange="modify()" value="Nominal"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Capitalización</th>
+                            <td><input id="capitalizacion" type="text" onchange="modify()" value="Quincenal"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Tasa de interés</th>
+                            <td><input id="tasa_interes" type="number" onchange="modify()" value="8"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Tasa anual de descuento</th>
+                            <td><input id="tasa_anual_descuento" type="number" onchange="modify()" value="4.5"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Imp. a la Renta</th>
+                            <td><input id="imp_renta" type="number" onchange="modify()" value="30"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Fecha de Emisión</th>
+                            <td><input style="width: 61%;" id="fecha_emision" type="date" onchange="modify()" value="05-01-2022"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -58,147 +82,122 @@
                 <table class="table table-dark table-striped" id="tabla_2">
                     <tbody>
                         <tr>
-                            <th scope="row">Costes Notariales </th>
-                            <td><input id="costes_notariales" type="number" onchange="modify()"></td>
+                            <th scope="row">% Prima </th>
+                            <td><input id="prima" type="number" onchange="modify()" value="1"></td>
                         </tr>
                         <tr>
-                            <th scope="row">Costes Registrales</th>
-                            <td><input id="costes_registrales" type="number" onchange="modify()"></td>
+                            <th scope="row">% Estructuración</th>
+                            <td><input id="estructuracion" type="number" onchange="modify()" value="1"></td>
                         </tr>
                         <tr>
-                            <th scope="row">Tasación</th>
-                            <td><input id="tasacion" type="number" onchange="modify()"></td>
+                            <th scope="row">% Colocación</th>
+                            <td><input id="colocacion" type="number" onchange="modify()" value="0.25"></td>
                         </tr>
                         <tr>
-                            <th scope="row">Comisión de estudio</th>
-                            <td><input id="comision_estudio" type="number" onchange="modify()"></td>
+                            <th scope="row">% Flotación</th>
+                            <td><input id="flotacion" type="number" onchange="modify()" value="0.45"></td>
                         </tr>
                         <tr>
-                            <th scope="row">Comisión activación</th>
-                            <td><input id="comision_activacion" type="number" onchange="modify()"></td>
+                            <th scope="row">% CAVALI</th>
+                            <td><input id="cavali" type="number" onchange="modify()" value="0.5"></td>
                         </tr>
                     </tbody>
                 </table>
-                <h3 style="text-align: center;">Datos de los costes/gastos periodicos </h3>
+
+            </div>
+            <div class="col">
+                <h3 style="text-align: center;">Resultados de la estructuración del Bono </h3>
                 <table class="table table-dark table-striped" id="tabla_3">
                     <tbody>
                         <tr>
-                            <th scope="row">Comisión periodica</th>
-                            <td><input id="comision_periodica" type="number" onchange="modify()"></td>
+                            <th scope="row">Frecuencia del cupón </th>
+                            <td id="frecuencia_cupon_tabla3"></td>
                         </tr>
                         <tr>
-                            <th scope="row">Portes</th>
-                            <td><input id="portes" type="number" onchange="modify()"></td>
+                            <th scope="row">Días capitalización</th>
+                            <td id="dias_capitalizacion"></td>
                         </tr>
                         <tr>
-                            <th scope="row">Gastos de Administración</th>
-                            <td><input id="gastos_administracion" type="number" onchange="modify()"></td>
+                            <th scope="row">Nº Períodos por Año</th>
+                            <td id="n_peridios_anio"></td>
                         </tr>
                         <tr>
-                            <th scope="row">% de Seguro desgravamen</th>
-                            <td><input id="seguro_desgravamem" type="number" onchange="modify()"></td>
+                            <th scope="row">Nº Total de Periodos</th>
+                            <td id="total_periodos"></td>
                         </tr>
                         <tr>
-                            <th scope="row">% de Seguro riesgo</th>
-                            <td><input id="seguro_riesgo" type="number" onchange="modify()"></td>
+                            <th scope="row">Tasa efectiva anual</th>
+                            <td id="tasa_efectiva_anual"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Tasa efectiva </th>
+                            <td id="tasa_efectiva"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">COK </th>
+                            <td id="cok"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Costes Iniciales Emisor</th>
+                            <td id="costes_iniciales_emisor"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Costes Iniciales Bonista</th>
+                            <td id="costes_iniciales_bonista"></td>
                         </tr>
                     </tbody>
                 </table>
-                <h3 style="text-align: center;">Datos del costo de oportunidad </h3>
+                <h3 style="text-align: center;">Resultados del Precio Actual y Utilidad</h3>
                 <table class="table table-dark table-striped" id="tabla_4">
                     <tbody>
                         <tr>
-                            <th scope="row">Tasa de descuento</th>
-                            <td><input id="tasa_descuento" type="number" onchange="modify()"></td>
+                            <th scope="row">Precio Actual </th>
+                            <td id="precio_actual"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Utilidad / Pérdida</th>
+                            <td id="utilidad_perdida"></td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            <div class="col">
-                <h3 style="text-align: center;">Resultados del financiamiento </h3>
+                <h3 style="text-align: center;">Resultados Ratios de decisión</h3>
                 <table class="table table-dark table-striped" id="tabla_5">
                     <tbody>
                         <tr>
-                            <th scope="row">Saldo a financiar</th>
-                            <td>
-                                <input id="saldo_financiar" type=" number" onchange="modify() "></td>
+                            <th scope="row">Duración </th>
+                            <td id="duracion"></td>
                         </tr>
                         <tr>
-                            <th scope="row ">Monto del préstamo</th>
-                            <td><input id="monto_prestamo " type="number" onchange="modify() "></td>
+                            <th scope="row">Convexidad</th>
+                            <td id="convexidad"></td>
                         </tr>
                         <tr>
-                            <th scope="row ">Nº Cuotas por Año</th>
-                            <td><input id="n_cuotas_anio" type="number" onchange="modify() "></td>
+                            <th scope="row">Total</th>
+                            <td id="total"></td>
                         </tr>
                         <tr>
-                            <th scope="row ">Nº Total de Cuotas</th>
-                            <td><input id="n_total_cuotas" type="number" onchange="modify() "></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h3 style="text-align: center; ">Resultados de los costes/gastos periodicos </h3>
-                <table class="table table-dark table-striped " id="tabla_6">
-                    <tbody>
-                        <tr>
-                            <th scope="row ">% de Seguro desgrav. per.</th>
-                            <td><input id="seguro_desgrav_per " type="number " onchange="modify() "></td>
-                        </tr>
-                        <tr>
-                            <th scope="row ">Seguro riesgo</th>
-                            <td><input id="seguro_riesgo_resultado " type="number " onchange="modify() "></td>
+                            <th scope="row">Duración modificada</th>
+                            <td id="duracion_modificada"></td>
                         </tr>
                     </tbody>
                 </table>
-                <h3 style="text-align: center; ">Resultados totales por … </h3>
-                <table class="table table-dark table-striped " id="tabla_7">
+                <h3 style="text-align: center;">Resultados de los Indicadores de Rentabilidad</h3>
+                <table class="table table-dark table-striped" id="tabla_6">
                     <tbody>
                         <tr>
-                            <th scope="row ">Intereses</th>
-                            <td><input id="intereses " type="number " onchange="modify() "></td>
+                            <th scope="row">TCEA Emisor </th>
+                            <td id="tcea_emisor"></td>
+                            <td id="tcea_emisor_2"></td>
                         </tr>
                         <tr>
-                            <th scope="row ">Amortización del capital</th>
-                            <td><input id="amortizacion_capital " type="number " onchange="modify() "></td>
+                            <th scope="row">TCEA Emisor c/Escudo</th>
+                            <td id="tcea_emisor_escudo"></td>
+                            <td id="tcea_emisor_escudo_2"></td>
                         </tr>
                         <tr>
-                            <th scope="row ">Seguro de desgravamen</th>
-                            <td><input id="seguro_desgravamen_resultado " type="number " onchange="modify() "></td>
-                        </tr>
-                        <tr>
-                            <th scope="row ">Seguro contra todo riesgo</th>
-                            <td><input id="seguro_contra_todo_riesgo " type="number " onchange="modify() "></td>
-                        </tr>
-                        <tr>
-                            <th scope="row ">Comisiones periodicas</th>
-                            <td><input id="comisiones_periodicas " type="number " onchange="modify() "></td>
-                        </tr>
-                        <tr>
-                            <th scope="row ">Portes / Gastos de adm.</th>
-                            <td><input id="portes_gastos_adm " type="number " onchange="modify() "></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h3 style="text-align: center; ">Resultados de Indicadores de Rentabilidad </h3>
-                <table class="table table-dark table-striped " id="tabla_8">
-                    <tbody>
-                        <tr>
-                            <th scope="row ">Tasa de descuento</th>
-                            <td><input id="tasa_descuento_resultado " type="number " onchange="modify() "></td>
-                        </tr>
-                        <tr>
-                            <th scope="row ">TIR de la operación</th>
-                            <td><input id="tir_operacion " type="number " onchange="modify() "></td>
-                        </tr>
-                        <tr>
-                            <th scope="row ">TCEA de la operación</th>
-                            <td><input id="tcea_operacion " type="number " onchange="modify() "></td>
-                        </tr>
-                        <tr>
-                            <th scope="row ">VAN operación</th>
-                            <td><input id="van_operacion " type="number " onchange="modify() "></td>
+                            <th scope="row">TREA Bonista</th>
+                            <td id="trea_bonista"></td>
+                            <td id="trea_bonista_2"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -213,49 +212,646 @@
         <thead>
             <tr>
                 <th scope="col ">Nº</th>
-                <th scope="col ">TEA</th>
-                <th scope="col ">i' = TEP = TEM</th>
-                <th scope="col ">IA</th>
-                <th scope="col ">IP</th>
-                <th scope="col ">P.G</th>
-                <th scope="col ">Saldo Inicial</th>
-                <th scope="col ">Saldo Inicial Indexado</th>
-                <th scope="col ">Interes</th>
-                <th scope="col ">Cuota (inc Seg Des)</th>
+                <th scope="col ">Fecha Programada</th>
+                <th scope="col ">Inflación Anual</th>
+                <th scope="col ">Inflación </th>
+                <th scope="col ">Plazo de Gracia</th>
+                <th scope="col ">Bono</th>
+                <th scope="col ">Bono Indexado</th>
+                <th scope="col ">Cupon (Interes)</th>
+                <th scope="col ">Cuota</th>
                 <th scope="col ">Amort.</th>
-                <th scope="col ">Prepago</th>
-                <th scope="col ">Seguro desgrav</th>
-                <th scope="col ">Seguro riesgo</th>
-                <th scope="col ">Comision</th>
-                <th scope="col ">Portes</th>
-                <th scope="col ">Gastos Adm.</th>
-                <th scope="col ">Saldo Final</th>
-                <th scope="col ">Flujo</th>
+                <th scope="col ">Prima.</th>
+                <th scope="col ">Escudo</th>
+                <th scope="col ">Flujo Emisor</th>
+                <th scope="col ">Flujo Emisor c/Escudo</th>
+                <th scope="col ">Flujo Bonista</th>
+                <th scope="col ">Flujo Act.</th>
+                <th scope="col ">FA x Plazo</th>
+                <th scope="col ">Factor p/Convexidad</th>
             </tr>
         </thead>
         <tbody id="tabla_general">
             <tr>
-                <th scope="row" style="color: red;">1</th>
-                <td style="width: 5%;"><input style="width: 100%;" id="van_operacion " type="number " onchange="" value="10"></td>
-                <td>Otto</td>
-                <td style="width: 5%;"><input style="width: 100%;" id="van_operacion " type="number " onchange="" value="10"></td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
+                <th scope="row" style="color: red;">0</th>
+                <td style="width: 5%;"><input style="width: 100%;" id="fecha_programada" type="date" onchange="" value="2018-07-22"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="cambio_inicio"></td>
+                <td id="cambio_inicio2"></td>
+                <td id="cambio_inicio3"></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
-
+            <tr>
+                <th scope="row" style="color: red;">1</th>
+                <td id="fecha_emision_1"></td>
+                <td><input id="inflacion_anual_1" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_1"></td>
+                <td><input id="plazo_gracia_1" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_1"></td>
+                <td id="bono_indexado_1"></td>
+                <td id="cupon_interes_1"></td>
+                <td id="cuota_1"></td>
+                <td id="amort_1"></td>
+                <td id="prima_1"></td>
+                <td id="escudo_1"></td>
+                <td id="flujo_emisor_1"></td>
+                <td id="flujo_emisor_escudo_1"></td>
+                <td id="flujo_bonista_1"></td>
+                <td id="flujo_act_1"></td>
+                <td id="fa_x_plazo_1"></td>
+                <td id="factor_p4_convexidad_1"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">2</th>
+                <td id="fecha_emision_2"></td>
+                <td><input id="inflacion_anual_2" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_2"></td>
+                <td><input id="plazo_gracia_2" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_2"></td>
+                <td id="bono_indexado_2"></td>
+                <td id="cupon_interes_2"></td>
+                <td id="cuota_2"></td>
+                <td id="amort_2"></td>
+                <td id="prima_2"></td>
+                <td id="escudo_2"></td>
+                <td id="flujo_emisor_2"></td>
+                <td id="flujo_emisor_escudo_2"></td>
+                <td id="flujo_bonista_2"></td>
+                <td id="flujo_act_2"></td>
+                <td id="fa_x_plazo_2"></td>
+                <td id="factor_p4_convexidad_2"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">3</th>
+                <td id="fecha_emision_3"></td>
+                <td><input id="inflacion_anual_3" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_3"></td>
+                <td><input id="plazo_gracia_3" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_3"></td>
+                <td id="bono_indexado_3"></td>
+                <td id="cupon_interes_3"></td>
+                <td id="cuota_3"></td>
+                <td id="amort_3"></td>
+                <td id="prima_3"></td>
+                <td id="escudo_3"></td>
+                <td id="flujo_emisor_3"></td>
+                <td id="flujo_emisor_escudo_3"></td>
+                <td id="flujo_bonista_3"></td>
+                <td id="flujo_act_3"></td>
+                <td id="fa_x_plazo_3"></td>
+                <td id="factor_p4_convexidad_3"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">4</th>
+                <td id="fecha_emision_4"></td>
+                <td><input id="inflacion_anual_4" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_4"></td>
+                <td><input id="plazo_gracia_4" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_4"></td>
+                <td id="bono_indexado_4"></td>
+                <td id="cupon_interes_4"></td>
+                <td id="cuota_4"></td>
+                <td id="amort_4"></td>
+                <td id="prima_4"></td>
+                <td id="escudo_4"></td>
+                <td id="flujo_emisor_4"></td>
+                <td id="flujo_emisor_escudo_4"></td>
+                <td id="flujo_bonista_4"></td>
+                <td id="flujo_act_4"></td>
+                <td id="fa_x_plazo_4"></td>
+                <td id="factor_p4_convexidad_4"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">5</th>
+                <td id="fecha_emision_5"></td>
+                <td><input id="inflacion_anual_5" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_5"></td>
+                <td><input id="plazo_gracia_5" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_5"></td>
+                <td id="bono_indexado_5"></td>
+                <td id="cupon_interes_5"></td>
+                <td id="cuota_5"></td>
+                <td id="amort_5"></td>
+                <td id="prima_5"></td>
+                <td id="escudo_5"></td>
+                <td id="flujo_emisor_5"></td>
+                <td id="flujo_emisor_escudo_5"></td>
+                <td id="flujo_bonista_5"></td>
+                <td id="flujo_act_5"></td>
+                <td id="fa_x_plazo_5"></td>
+                <td id="factor_p4_convexidad_5"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">6</th>
+                <td id="fecha_emision_6"></td>
+                <td><input id="inflacion_anual_6" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_6"></td>
+                <td><input id="plazo_gracia_6" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_6"></td>
+                <td id="bono_indexado_6"></td>
+                <td id="cupon_interes_6"></td>
+                <td id="cuota_6"></td>
+                <td id="amort_6"></td>
+                <td id="prima_6"></td>
+                <td id="escudo_6"></td>
+                <td id="flujo_emisor_6"></td>
+                <td id="flujo_emisor_escudo_6"></td>
+                <td id="flujo_bonista_6"></td>
+                <td id="flujo_act_6"></td>
+                <td id="fa_x_plazo_6"></td>
+                <td id="factor_p4_convexidad_6"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">7</th>
+                <td id="fecha_emision_7"></td>
+                <td><input id="inflacion_anual_7" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_7"></td>
+                <td><input id="plazo_gracia_7" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_7"></td>
+                <td id="bono_indexado_7"></td>
+                <td id="cupon_interes_7"></td>
+                <td id="cuota_7"></td>
+                <td id="amort_7"></td>
+                <td id="prima_7"></td>
+                <td id="escudo_7"></td>
+                <td id="flujo_emisor_7"></td>
+                <td id="flujo_emisor_escudo_7"></td>
+                <td id="flujo_bonista_7"></td>
+                <td id="flujo_act_7"></td>
+                <td id="fa_x_plazo_7"></td>
+                <td id="factor_p4_convexidad_7"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">8</th>
+                <td id="fecha_emision_8"></td>
+                <td><input id="inflacion_anual_8" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_8"></td>
+                <td><input id="plazo_gracia_8" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_8"></td>
+                <td id="bono_indexado_8"></td>
+                <td id="cupon_interes_8"></td>
+                <td id="cuota_8"></td>
+                <td id="amort_8"></td>
+                <td id="prima_8"></td>
+                <td id="escudo_8"></td>
+                <td id="flujo_emisor_8"></td>
+                <td id="flujo_emisor_escudo_8"></td>
+                <td id="flujo_bonista_8"></td>
+                <td id="flujo_act_8"></td>
+                <td id="fa_x_plazo_8"></td>
+                <td id="factor_p4_convexidad_8"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">9</th>
+                <td id="fecha_emision_9"></td>
+                <td><input id="inflacion_anual_9" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_9"></td>
+                <td><input id="plazo_gracia_9" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_9"></td>
+                <td id="bono_indexado_9"></td>
+                <td id="cupon_interes_9"></td>
+                <td id="cuota_9"></td>
+                <td id="amort_9"></td>
+                <td id="prima_9"></td>
+                <td id="escudo_9"></td>
+                <td id="flujo_emisor_9"></td>
+                <td id="flujo_emisor_escudo_9"></td>
+                <td id="flujo_bonista_9"></td>
+                <td id="flujo_act_9"></td>
+                <td id="fa_x_plazo_9"></td>
+                <td id="factor_p4_convexidad_9"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">10</th>
+                <td id="fecha_emision_10"></td>
+                <td><input id="inflacion_anual_10" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_10"></td>
+                <td><input id="plazo_gracia_10" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_10"></td>
+                <td id="bono_indexado_10"></td>
+                <td id="cupon_interes_10"></td>
+                <td id="cuota_10"></td>
+                <td id="amort_10"></td>
+                <td id="prima_10"></td>
+                <td id="escudo_10"></td>
+                <td id="flujo_emisor_10"></td>
+                <td id="flujo_emisor_escudo_10"></td>
+                <td id="flujo_bonista_10"></td>
+                <td id="flujo_act_10"></td>
+                <td id="fa_x_plazo_10"></td>
+                <td id="factor_p4_convexidad_10"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">11</th>
+                <td id="fecha_emision_11"></td>
+                <td><input id="inflacion_anual_11" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_11"></td>
+                <td><input id="plazo_gracia_11" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_11"></td>
+                <td id="bono_indexado_11"></td>
+                <td id="cupon_interes_11"></td>
+                <td id="cuota_11"></td>
+                <td id="amort_11"></td>
+                <td id="prima_11"></td>
+                <td id="escudo_11"></td>
+                <td id="flujo_emisor_11"></td>
+                <td id="flujo_emisor_escudo_11"></td>
+                <td id="flujo_bonista_11"></td>
+                <td id="flujo_act_11"></td>
+                <td id="fa_x_plazo_11"></td>
+                <td id="factor_p4_convexidad_11"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">12</th>
+                <td id="fecha_emision_12"></td>
+                <td><input id="inflacion_anual_12" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_12"></td>
+                <td><input id="plazo_gracia_12" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_12"></td>
+                <td id="bono_indexado_12"></td>
+                <td id="cupon_interes_12"></td>
+                <td id="cuota_12"></td>
+                <td id="amort_12"></td>
+                <td id="prima_12"></td>
+                <td id="escudo_12"></td>
+                <td id="flujo_emisor_12"></td>
+                <td id="flujo_emisor_escudo_12"></td>
+                <td id="flujo_bonista_12"></td>
+                <td id="flujo_act_12"></td>
+                <td id="fa_x_plazo_12"></td>
+                <td id="factor_p4_convexidad_12"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">13</th>
+                <td id="fecha_emision_13"></td>
+                <td><input id="inflacion_anual_13" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_13"></td>
+                <td><input id="plazo_gracia_13" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_13"></td>
+                <td id="bono_indexado_13"></td>
+                <td id="cupon_interes_13"></td>
+                <td id="cuota_13"></td>
+                <td id="amort_13"></td>
+                <td id="prima_13"></td>
+                <td id="escudo_13"></td>
+                <td id="flujo_emisor_13"></td>
+                <td id="flujo_emisor_escudo_13"></td>
+                <td id="flujo_bonista_13"></td>
+                <td id="flujo_act_13"></td>
+                <td id="fa_x_plazo_13"></td>
+                <td id="factor_p4_convexidad_13"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">14</th>
+                <td id="fecha_emision_14"></td>
+                <td><input id="inflacion_anual_14" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_14"></td>
+                <td><input id="plazo_gracia_14" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_14"></td>
+                <td id="bono_indexado_14"></td>
+                <td id="cupon_interes_14"></td>
+                <td id="cuota_14"></td>
+                <td id="amort_14"></td>
+                <td id="prima_14"></td>
+                <td id="escudo_14"></td>
+                <td id="flujo_emisor_14"></td>
+                <td id="flujo_emisor_escudo_14"></td>
+                <td id="flujo_bonista_14"></td>
+                <td id="flujo_act_14"></td>
+                <td id="fa_x_plazo_14"></td>
+                <td id="factor_p4_convexidad_14"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">15</th>
+                <td id="fecha_emision_15"></td>
+                <td><input id="inflacion_anual_15" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_15"></td>
+                <td><input id="plazo_gracia_15" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_15"></td>
+                <td id="bono_indexado_15"></td>
+                <td id="cupon_interes_15"></td>
+                <td id="cuota_15"></td>
+                <td id="amort_15"></td>
+                <td id="prima_15"></td>
+                <td id="escudo_15"></td>
+                <td id="flujo_emisor_15"></td>
+                <td id="flujo_emisor_escudo_15"></td>
+                <td id="flujo_bonista_15"></td>
+                <td id="flujo_act_15"></td>
+                <td id="fa_x_plazo_15"></td>
+                <td id="factor_p4_convexidad_15"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">16</th>
+                <td id="fecha_emision_16"></td>
+                <td><input id="inflacion_anual_16" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_16"></td>
+                <td><input id="plazo_gracia_16" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_16"></td>
+                <td id="bono_indexado_16"></td>
+                <td id="cupon_interes_16"></td>
+                <td id="cuota_16"></td>
+                <td id="amort_16"></td>
+                <td id="prima_16"></td>
+                <td id="escudo_16"></td>
+                <td id="flujo_emisor_16"></td>
+                <td id="flujo_emisor_escudo_16"></td>
+                <td id="flujo_bonista_16"></td>
+                <td id="flujo_act_16"></td>
+                <td id="fa_x_plazo_16"></td>
+                <td id="factor_p4_convexidad_16"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">17</th>
+                <td id="fecha_emision_17"></td>
+                <td><input id="inflacion_anual_17" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_17"></td>
+                <td><input id="plazo_gracia_17" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_17"></td>
+                <td id="bono_indexado_17"></td>
+                <td id="cupon_interes_17"></td>
+                <td id="cuota_17"></td>
+                <td id="amort_17"></td>
+                <td id="prima_17"></td>
+                <td id="escudo_17"></td>
+                <td id="flujo_emisor_17"></td>
+                <td id="flujo_emisor_escudo_17"></td>
+                <td id="flujo_bonista_17"></td>
+                <td id="flujo_act_17"></td>
+                <td id="fa_x_plazo_17"></td>
+                <td id="factor_p4_convexidad_17"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">18</th>
+                <td id="fecha_emision_18"></td>
+                <td><input id="inflacion_anual_18" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_18"></td>
+                <td><input id="plazo_gracia_18" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_18"></td>
+                <td id="bono_indexado_18"></td>
+                <td id="cupon_interes_18"></td>
+                <td id="cuota_18"></td>
+                <td id="amort_18"></td>
+                <td id="prima_18"></td>
+                <td id="escudo_18"></td>
+                <td id="flujo_emisor_18"></td>
+                <td id="flujo_emisor_escudo_18"></td>
+                <td id="flujo_bonista_18"></td>
+                <td id="flujo_act_18"></td>
+                <td id="fa_x_plazo_18"></td>
+                <td id="factor_p4_convexidad_18"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">19</th>
+                <td id="fecha_emision_19"></td>
+                <td><input id="inflacion_anual_19" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_19"></td>
+                <td><input id="plazo_gracia_19" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_19"></td>
+                <td id="bono_indexado_19"></td>
+                <td id="cupon_interes_19"></td>
+                <td id="cuota_19"></td>
+                <td id="amort_19"></td>
+                <td id="prima_19"></td>
+                <td id="escudo_19"></td>
+                <td id="flujo_emisor_19"></td>
+                <td id="flujo_emisor_escudo_19"></td>
+                <td id="flujo_bonista_19"></td>
+                <td id="flujo_act_19"></td>
+                <td id="fa_x_plazo_19"></td>
+                <td id="factor_p4_convexidad_19"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">20</th>
+                <td id="fecha_emision_20"></td>
+                <td><input id="inflacion_anual_20" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_20"></td>
+                <td><input id="plazo_gracia_20" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_20"></td>
+                <td id="bono_indexado_20"></td>
+                <td id="cupon_interes_20"></td>
+                <td id="cuota_20"></td>
+                <td id="amort_20"></td>
+                <td id="prima_20"></td>
+                <td id="escudo_20"></td>
+                <td id="flujo_emisor_20"></td>
+                <td id="flujo_emisor_escudo_20"></td>
+                <td id="flujo_bonista_20"></td>
+                <td id="flujo_act_20"></td>
+                <td id="fa_x_plazo_20"></td>
+                <td id="factor_p4_convexidad_20"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">21</th>
+                <td id="fecha_emision_21"></td>
+                <td><input id="inflacion_anual_21" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_21"></td>
+                <td><input id="plazo_gracia_21" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_21"></td>
+                <td id="bono_indexado_21"></td>
+                <td id="cupon_interes_21"></td>
+                <td id="cuota_21"></td>
+                <td id="amort_21"></td>
+                <td id="prima_21"></td>
+                <td id="escudo_21"></td>
+                <td id="flujo_emisor_21"></td>
+                <td id="flujo_emisor_escudo_21"></td>
+                <td id="flujo_bonista_21"></td>
+                <td id="flujo_act_21"></td>
+                <td id="fa_x_plazo_21"></td>
+                <td id="factor_p4_convexidad_21"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">22</th>
+                <td id="fecha_emision_22"></td>
+                <td><input id="inflacion_anual_22" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_22"></td>
+                <td><input id="plazo_gracia_22" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_22"></td>
+                <td id="bono_indexado_22"></td>
+                <td id="cupon_interes_22"></td>
+                <td id="cuota_22"></td>
+                <td id="amort_22"></td>
+                <td id="prima_22"></td>
+                <td id="escudo_22"></td>
+                <td id="flujo_emisor_22"></td>
+                <td id="flujo_emisor_escudo_22"></td>
+                <td id="flujo_bonista_22"></td>
+                <td id="flujo_act_22"></td>
+                <td id="fa_x_plazo_22"></td>
+                <td id="factor_p4_convexidad_22"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">23</th>
+                <td id="fecha_emision_23"></td>
+                <td><input id="inflacion_anual_23" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_23"></td>
+                <td><input id="plazo_gracia_23" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_23"></td>
+                <td id="bono_indexado_23"></td>
+                <td id="cupon_interes_23"></td>
+                <td id="cuota_23"></td>
+                <td id="amort_23"></td>
+                <td id="prima_23"></td>
+                <td id="escudo_23"></td>
+                <td id="flujo_emisor_23"></td>
+                <td id="flujo_emisor_escudo_23"></td>
+                <td id="flujo_bonista_23"></td>
+                <td id="flujo_act_23"></td>
+                <td id="fa_x_plazo_23"></td>
+                <td id="factor_p4_convexidad_23"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">24</th>
+                <td id="fecha_emision_24"></td>
+                <td><input id="inflacion_anual_24" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_24"></td>
+                <td><input id="plazo_gracia_24" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_24"></td>
+                <td id="bono_indexado_24"></td>
+                <td id="cupon_interes_24"></td>
+                <td id="cuota_24"></td>
+                <td id="amort_24"></td>
+                <td id="prima_24"></td>
+                <td id="escudo_24"></td>
+                <td id="flujo_emisor_24"></td>
+                <td id="flujo_emisor_escudo_24"></td>
+                <td id="flujo_bonista_24"></td>
+                <td id="flujo_act_24"></td>
+                <td id="fa_x_plazo_24"></td>
+                <td id="factor_p4_convexidad_24"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">25</th>
+                <td id="fecha_emision_25"></td>
+                <td><input id="inflacion_anual_25" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_25"></td>
+                <td><input id="plazo_gracia_25" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_25"></td>
+                <td id="bono_indexado_25"></td>
+                <td id="cupon_interes_25"></td>
+                <td id="cuota_25"></td>
+                <td id="amort_25"></td>
+                <td id="prima_25"></td>
+                <td id="escudo_25"></td>
+                <td id="flujo_emisor_25"></td>
+                <td id="flujo_emisor_escudo_25"></td>
+                <td id="flujo_bonista_25"></td>
+                <td id="flujo_act_25"></td>
+                <td id="fa_x_plazo_25"></td>
+                <td id="factor_p4_convexidad_25"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">26</th>
+                <td id="fecha_emision_26"></td>
+                <td><input id="inflacion_anual_26" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_26"></td>
+                <td><input id="plazo_gracia_26" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_26"></td>
+                <td id="bono_indexado_26"></td>
+                <td id="cupon_interes_26"></td>
+                <td id="cuota_26"></td>
+                <td id="amort_26"></td>
+                <td id="prima_26"></td>
+                <td id="escudo_26"></td>
+                <td id="flujo_emisor_26"></td>
+                <td id="flujo_emisor_escudo_26"></td>
+                <td id="flujo_bonista_26"></td>
+                <td id="flujo_act_26"></td>
+                <td id="fa_x_plazo_26"></td>
+                <td id="factor_p4_convexidad_26"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">27</th>
+                <td id="fecha_emision_27"></td>
+                <td><input id="inflacion_anual_27" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_27"></td>
+                <td><input id="plazo_gracia_27" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_27"></td>
+                <td id="bono_indexado_27"></td>
+                <td id="cupon_interes_27"></td>
+                <td id="cuota_27"></td>
+                <td id="amort_27"></td>
+                <td id="prima_27"></td>
+                <td id="escudo_27"></td>
+                <td id="flujo_emisor_27"></td>
+                <td id="flujo_emisor_escudo_27"></td>
+                <td id="flujo_bonista_27"></td>
+                <td id="flujo_act_27"></td>
+                <td id="fa_x_plazo_27"></td>
+                <td id="factor_p4_convexidad_27"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">28</th>
+                <td id="fecha_emision_28"></td>
+                <td><input id="inflacion_anual_28" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_28"></td>
+                <td><input id="plazo_gracia_28" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_28"></td>
+                <td id="bono_indexado_28"></td>
+                <td id="cupon_interes_28"></td>
+                <td id="cuota_28"></td>
+                <td id="amort_28"></td>
+                <td id="prima_28"></td>
+                <td id="escudo_28"></td>
+                <td id="flujo_emisor_28"></td>
+                <td id="flujo_emisor_escudo_28"></td>
+                <td id="flujo_bonista_28"></td>
+                <td id="flujo_act_28"></td>
+                <td id="fa_x_plazo_28"></td>
+                <td id="factor_p4_convexidad_28"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">29</th>
+                <td id="fecha_emision_29"></td>
+                <td><input id="inflacion_anual_29" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_29"></td>
+                <td><input id="plazo_gracia_29" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_29"></td>
+                <td id="bono_indexado_29"></td>
+                <td id="cupon_interes_29"></td>
+                <td id="cuota_29"></td>
+                <td id="amort_29"></td>
+                <td id="prima_29"></td>
+                <td id="escudo_29"></td>
+                <td id="flujo_emisor_29"></td>
+                <td id="flujo_emisor_escudo_29"></td>
+                <td id="flujo_bonista_29"></td>
+                <td id="flujo_act_29"></td>
+                <td id="fa_x_plazo_29"></td>
+                <td id="factor_p4_convexidad_29"></td>
+            </tr>
+            <tr>
+                <th scope="row" style="color: red;">30</th>
+                <td id="fecha_emision_30"></td>
+                <td><input id="inflacion_anual_30" type="number" onchange="modify()" value="0"></td>
+                <td id="inflacion_30"></td>
+                <td><input id="plazo_gracia_30" type="text" onchange="modify()" value="S"></td>
+                <td id="bono_30"></td>
+                <td id="bono_indexado_30"></td>
+                <td id="cupon_interes_30"></td>
+                <td id="cuota_30"></td>
+                <td id="amort_30"></td>
+                <td id="prima_30"></td>
+                <td id="escudo_30"></td>
+                <td id="flujo_emisor_30"></td>
+                <td id="flujo_emisor_escudo_30"></td>
+                <td id="flujo_bonista_30"></td>
+                <td id="flujo_act_30"></td>
+                <td id="fa_x_plazo_30"></td>
+                <td id="factor_p4_convexidad_30"></td>
+            </tr>
         </tbody>
     </table>
     <script src="./index.js "></script>
