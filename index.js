@@ -4,15 +4,6 @@ var year, month, day;
 var iniciado = false;
 
 
-Date.prototype.addDays = function(days, fecha) {
-    fecha.setDate(fecha.getDate() + days);
-
-    year = fecha.getFullYear();
-    month = fecha.getUTCMonth() + 1;
-    day = fecha.getDate();
-    //console.log(fecha.getDate())
-    return fecha;
-}
 
 
 var arr = [
