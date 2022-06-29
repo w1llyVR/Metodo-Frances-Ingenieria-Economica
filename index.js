@@ -529,8 +529,30 @@ function modify() {
 
 
 
+    //tabla4
+    var precio_total2 = 0;
+    var suma_flujo_activo = 0;
+    var suma_fa_x_plazo = 0;
+    var suma_factor_convexidad = 0;
+    for (let i = 0; i < 30; i++) {
+        precio_total2 += (arr[i][13] / (Math.pow((1 + cok / 100), arr[i][0])));
+        suma_flujo_activo += arr[i][14];
+        suma_fa_x_plazo += arr[i][15];
+        suma_factor_convexidad += arr[i][16];
+    }
+    document.getElementById('precio_actual').innerHTML = `${precio_total2 }`
 
+    var utilidad_perdidaa = precio_total2 - valor_comercial - costes_iniciales_bonista;
+    document.getElementById('utilidad_perdida').innerHTML = `${utilidad_perdidaa}`;
 
+    var duracion = suma_fa_x_plazo / suma_flujo_activo;
+    document.getElementById('duracion').innerHTML = `${duracion}`
+
+    var convexidadd = suma_factor_convexidad / ((Math.pow((1 + cok / 100), 2) * suma_flujo_activo * Math.pow(dias_x_anio / frecuencia_cupon_tabla3, 2)));
+    document.getElementById('convexidad').innerHTML = `${convexidadd}`
+
+    document.getElementById('total').innerHTML = `${duracion + convexidadd}`;
+    document.getElementById('duracion_modificada').innerHTML = `${duracion / (1 + cok/100)}`;
     //     //RES
 
     //     //tabla 5
