@@ -23,7 +23,7 @@ function ingresar() {
 
     console.log(usuario, contrasenia)
     if ((usuario == 'u20181h213' && contrasenia == 'finanzas2022') || (usuario == 'u202014476' && contrasenia == 'finanzas2022'))
-        window.location.replace('/Trabajo---Ing---Econ-mica/metodo_frances.html')
+        window.location.replace('/Metodo-Frances-Ingenieria-Economica/metodo_frances.html')
 
 }
 
